@@ -1,18 +1,30 @@
 package lv.toposoft.quarkus.microservices;
 
+import io.smallrye.reactive.messaging.annotations.Channel;
+import io.smallrye.reactive.messaging.annotations.Emitter;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
 import javax.enterprise.context.ApplicationScoped;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.inject.Inject;
+import java.math.BigDecimal;
+import java.time.Instant;
 
 @ApplicationScoped
-@Path("/api/payments")
 public class PaymentService {
+    // tag::adocKafkaEmitter[]
+    @Inject
+    @Channel("payment-channel")
+    Emitter<Payment> emitter;
+    // end::adocKafkaEmitter[]
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String payment() {
-        return "hello";
+    @ConfigProperty(name = "payment.cancel.fee", defaultValue = "0.05")
+    public BigDecimal cancelFee;
+
+    public Payment persistPayment(Payment payment){
+        payment.created = Instant.now();
+        payment.status = "new";
+        payment.persist();
+        emitter.send(payment);
+        return payment;
     }
 }

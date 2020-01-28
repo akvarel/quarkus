@@ -1,6 +1,8 @@
 package lv.toposoft.quarkus.microservices;
 
 import lv.toposoft.quarkus.microservices.client.PaymentTypeOneService;
+import lv.toposoft.quarkus.microservices.client.PaymentTypeThreeService;
+import lv.toposoft.quarkus.microservices.client.PaymentTypeTwoService;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import javax.inject.Inject;
@@ -15,6 +17,10 @@ import javax.ws.rs.core.MediaType;
 public class SearchResource {
     @Inject
     PaymentTypeOneService paymentTypeOneService;
+    @Inject
+    PaymentTypeTwoService paymentTypeTwoService;
+    @Inject
+    PaymentTypeThreeService paymentTypeThreeService;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -29,4 +35,9 @@ public class SearchResource {
         return "id";
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String hello() {
+        return "hello";
+    }
 }

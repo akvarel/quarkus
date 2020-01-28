@@ -8,6 +8,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.Date;
 
 /*
 Client should be able to create payment of one of 3 types - TYPE1, TYPE2, TYPE3. Fields 'amount' (positive decimal), 'currency' (EUR or USD), 'debtor_iban' and 'creditor_iban' (texts) are mandatory for all types.
@@ -34,6 +36,9 @@ public class Payment extends PanacheMongoEntity {
     @NotNull
     public String details;
 
+    public String status;
+    public Instant created;
+
     @Override
     public String toString() {
         return "Payment{" +
@@ -44,6 +49,9 @@ public class Payment extends PanacheMongoEntity {
             ", creditor_iban='" + creditor_iban + '\'' +
             ", creditor_bic='" + creditor_bic + '\'' +
             ", details='" + details + '\'' +
+            ", status='" + status + '\'' +
+            ", created=" + created +
+            ", id=" + id +
             '}';
     }
 }

@@ -64,6 +64,13 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-health</artifactId>
     </dependency>
+    <!-- Kafka integration -->
+    <!-- tag::kafkaDependency[] -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-reactive-messaging-kafka</artifactId>
+    </dependency>
+    <!-- end::kafkaDependency[] -->
   </dependencies>
   <build>
     <plugins>
