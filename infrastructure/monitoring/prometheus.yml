@@ -1,0 +1,21 @@
+global:
+  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+
+# tag::adocPrometheus[]
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+  - job_name: 'aggregator'
+    static_configs:
+      - targets: ['localhost:8082']
+  - job_name: 'payment_one'
+    static_configs:
+      - targets: ['localhost:8083']
+  - job_name: 'payment_two'
+    static_configs:
+      - targets: ['localhost:8084']
+  - job_name: 'payment_tree'
+    static_configs:
+      - targets: ['localhost:8084']
+# end::adocPrometheus[]
