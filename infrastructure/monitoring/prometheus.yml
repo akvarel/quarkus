@@ -17,5 +17,5 @@ scrape_configs:
       - targets: ['localhost:8084']
   - job_name: 'payment_tree'
     static_configs:
-      - targets: ['localhost:8084']
+      - targets: ['localhost:8085']
 # end::adocPrometheus[]
