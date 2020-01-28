@@ -37,6 +37,7 @@ public class SearchResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("/hello")
     public String hello() {
         return "hello";
     }
