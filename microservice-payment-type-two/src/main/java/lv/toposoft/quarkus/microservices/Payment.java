@@ -16,7 +16,7 @@ TYPE1 is only applicable for EUR payments, has additional field 'details' (text)
 TYPE2 is only applicable for USD payments, has additional field ‘details’ (text) which is optional.
 TYPE3 is applicable for payments in both EUR and USD currency, has additional field for creditor bank BIC code (text) which is mandatory.
  */
-@MongoEntity
+@MongoEntity(collection = "typeTwo")
 public class Payment extends PanacheMongoEntity {
     @NotNull
     public String payment_type;
