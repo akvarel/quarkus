@@ -42,6 +42,8 @@ public class PaymentResource {
     @Produces(APPLICATION_JSON)
     public Response getPayments() {
         List<Payment> paymentList = Payment.findAll().list();
+        if(paymentList.isEmpty())
+            return Response.noContent().build();
         return Response.ok(paymentList).build();
     }
     // end::adocMetricsMethods[]
